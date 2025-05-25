@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import seaborn as sns
+from matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
 # Load data
@@ -33,6 +34,16 @@ col3.metric("Negative", sum(filtered_df['Sentiment'] == 'Negative'))
 st.subheader("Sentiment Distribution")
 sentiment_counts = filtered_df['Sentiment'].value_counts()
 st.bar_chart(sentiment_counts)
+
+#Pie Chart
+st.subheader("Sentiment Proportion")
+fig1, ax1 = plt.subplots()
+colors = ['#66bb6a', '#ef5350', '#ffa726']  # Green, Red, Orange
+sentiment_counts = filtered_df['Sentiment'].value_counts()
+ax1.pie(sentiment_counts, labels=sentiment_counts.index, autopct='%1.1f%%', colors=colors, startangle=90)
+ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+st.pyplot(fig1)
+
 
 # Word Cloud
 st.subheader("Most Frequent Words")
