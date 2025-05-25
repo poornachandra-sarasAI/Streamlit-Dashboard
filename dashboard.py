@@ -11,7 +11,7 @@ def load_data():
     return df
 
 df = load_data()
-
+df = df[1:]
 # Sidebar
 st.sidebar.title("Filters")
 sentiment_filter = st.sidebar.multiselect("Select Sentiment", options=df['Sentiment'].unique(), default=df['Sentiment'].unique())
